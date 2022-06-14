@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const port = process.argv[2] ?? 8080;
+const port = process.env.PORT ?? 3000;
 
 const distPath = path.resolve(__dirname, '../dist');
 const indexPath = path.resolve(distPath, 'index.html');
