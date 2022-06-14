@@ -1,0 +1,68 @@
+name: CD pipeline
+
+on:
+  push:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+
+  test-deploy:
+    name: Full test deploy
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14.x
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2.2.2
+      with:
+        version: 7.2.1
+    - name: Installing dependencies
+      run: pnpm install
+    - name: Build
+      run: pnpm run build
+    - name: Deploy to Heroku
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        args: deploy --dir=build --prod
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: socketio-chat-frontend-001
+        heroku_email: 'wmdanor@gmail.com'
+        dontautocreate: true
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    if: ${{ false }}
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14.x
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v2.2.2
+      with:
+        version: 7.2.1
+    - name: Build
+      run: pnpm install
+    - name: Build
+      run: pnpm run build
+
+  deploy-dev:
+    name: Deploy to DEV
+    needs: build
+    environment: 
+      name: dev
+    runs-on: ubuntu-latest
+    steps: 
+    - name: Deploy to Heroku
+      uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        args: deploy --dir=build --prod
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: 'socketio-chat-frontend-001'
+        heroku_email: 'wmdanor@gmail.com'
