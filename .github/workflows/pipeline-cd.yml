@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
     - name: Deploy to Heroku
-      uses: akhileshns/heroku-deploy@v3.12.12
+      uses: CDNievas/heroku-action@v1.0
       with:
         args: deploy --dir=build --prod
         heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
