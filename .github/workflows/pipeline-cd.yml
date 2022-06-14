@@ -25,11 +25,11 @@ jobs:
     - name: Build
       run: pnpm run build
     - name: Deploy to Heroku
-      uses: CDNievas/heroku-action@v1.0
+      uses: akhileshns/heroku-deploy@v3.12.12
       with:
         args: deploy --dir=build --prod
         heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-        heroku_app_name: 'socketio-chat-frontend-001'
+        heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
         heroku_email: 'wmdanor@gmail.com'
 
   build:
@@ -59,7 +59,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
     - name: Deploy to Heroku
-      uses: CDNievas/heroku-action@v1.0
+      uses: akhileshns/heroku-deploy@v3.12.12
       with:
         args: deploy --dir=build --prod
         heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
