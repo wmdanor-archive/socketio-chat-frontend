@@ -20,7 +20,7 @@ jobs:
       uses: pnpm/action-setup@v2.2.2
       with:
         version: 7.2.1
-    - name: Build
+    - name: Installing dependencies
       run: pnpm install
     - name: Build
       run: pnpm run build
@@ -29,8 +29,9 @@ jobs:
       with:
         args: deploy --dir=build --prod
         heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-        heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+        heroku_app_name: socketio-chat-frontend-001
         heroku_email: 'wmdanor@gmail.com'
+        dontautocreate: true
 
   build:
     name: Build
