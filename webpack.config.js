@@ -1,4 +1,6 @@
-require('dotenv').config();
+try {
+  require('dotenv').config();
+} catch {}
 const path = require('path');
 
 const Dotenv = require('dotenv-webpack');
