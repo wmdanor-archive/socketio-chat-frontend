@@ -7,12 +7,10 @@ on:
 
 jobs:
 
-  test-deploy:
+  deploy-dev:
     name: Full test deploy
-    environment: 
-      name: dev
     env:
-      BACKEND_HOST: ${{ secrets.BACKEND_HOST }}
+      BACKEND_HOST: 'http:api.socket-io-chat.wmdanor.com'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -20,7 +18,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 14.x
-    - run: echo $BACKEND_HOST
     - name: Setup pnpm
       uses: pnpm/action-setup@v2.2.2
       with:
@@ -34,40 +31,7 @@ jobs:
       with:
         args: deploy --dir=build --prod
         heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-        heroku_app_name: socketio-chat-frontend-001
+        # heroku_app_name: socketio-chat-frontend-001
+        heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
         heroku_email: 'wmdanor@gmail.com'
         dontautocreate: true
-
-  build:
-    name: Build
-    environment: 
-      name: dev
-    runs-on: ubuntu-latest
-    if: ${{ false }}
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v3
-      with:
-        node-version: 14.x
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v2.2.2
-      with:
-        version: 7.2.1
-    - name: Build
-      run: pnpm install
-    - name: Build
-      run: pnpm run build
-
-  deploy-dev:
-    name: Deploy to DEV
-    needs: build
-    runs-on: ubuntu-latest
-    steps: 
-    - name: Deploy to Heroku
-      uses: akhileshns/heroku-deploy@v3.12.12
-      with:
-        args: deploy --dir=build --prod
-        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-        heroku_app_name: 'socketio-chat-frontend-001'
-        heroku_email: 'wmdanor@gmail.com'
