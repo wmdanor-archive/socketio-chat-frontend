@@ -12,7 +12,7 @@ jobs:
     environment:
       name: dev
     env:
-      BACKEND_HOST: 'http:api.socket-io-chat.wmdanor.com'
+      BACKEND_HOST: 'api.socket-io-chat.wmdanor.com'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
