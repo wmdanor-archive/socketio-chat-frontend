@@ -11,6 +11,7 @@
     "esModuleInterop": true
   },
   "include": [
+    "./src/declarations.d.ts",
     "./src/index.tsx"
   ]
 }

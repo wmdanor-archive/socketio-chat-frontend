@@ -1,3 +1,4 @@
+require('dotenv').config();
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -24,7 +25,16 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'css-loader',
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+            },
+          },
+        ],
       },
     ],
   },
@@ -33,4 +43,7 @@ module.exports = {
       template: path.resolve(__dirname, 'src/public/index.html'),
     }),
   ],
+  devServer: {
+    port: process.env.PORT,
+  },
 };
