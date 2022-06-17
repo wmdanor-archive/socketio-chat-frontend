@@ -9,6 +9,10 @@ jobs:
 
   test-deploy:
     name: Full test deploy
+    environment: 
+      name: dev
+    env:
+      BACKEND_HOST: ${{ secrets.BACKEND_HOST }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -16,6 +20,7 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 14.x
+    - run: echo $BACKEND_HOST
     - name: Setup pnpm
       uses: pnpm/action-setup@v2.2.2
       with:
@@ -35,6 +40,8 @@ jobs:
 
   build:
     name: Build
+    environment: 
+      name: dev
     runs-on: ubuntu-latest
     if: ${{ false }}
     steps:
@@ -55,8 +62,6 @@ jobs:
   deploy-dev:
     name: Deploy to DEV
     needs: build
-    environment: 
-      name: dev
     runs-on: ubuntu-latest
     steps: 
     - name: Deploy to Heroku
