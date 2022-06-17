@@ -8,24 +8,24 @@ on:
     branches: [ "*" ]
 
 jobs:
-  build:
-
+  ci:
+    name: CI
+    env:
+      BACKEND_HOST: 'localhost:8080'
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js 14.x
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 14.x
     - name: Setup pnpm
       uses: pnpm/action-setup@v2.2.2
       with:
         version: 7.2.1
-    - run: pnpm install
+    - name: Install dependencies
+      run: pnpm install
+    - name: Run tests
+      run: echo 'No tests'
+    - name: Build
     - run: pnpm run build
