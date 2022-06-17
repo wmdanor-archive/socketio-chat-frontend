@@ -8,7 +8,9 @@ on:
 jobs:
 
   deploy-dev:
-    name: Full test deploy
+    name: Deploy DEV
+    environment:
+      name: dev
     env:
       BACKEND_HOST: 'http:api.socket-io-chat.wmdanor.com'
     runs-on: ubuntu-latest
@@ -31,7 +33,6 @@ jobs:
       with:
         args: deploy --dir=build --prod
         heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-        # heroku_app_name: socketio-chat-frontend-001
         heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
         heroku_email: 'wmdanor@gmail.com'
         dontautocreate: true
