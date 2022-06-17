@@ -1,4 +1,5 @@
 import { io, Socket } from 'socket.io-client';
+import { config } from '../../config';
 import * as CST from './types/client-to-server';
 
 export enum ServerToClientEventsEnum {
@@ -34,7 +35,7 @@ const data: {
 
 export function getSocket(): Socket<ServerToClientEvents, ClientToServerEvents> {
   if (!data.socket) {
-    data.socket = io('http://localhost:8080');
+    data.socket = io(config.backendHost);
   }
 
   return data.socket;
