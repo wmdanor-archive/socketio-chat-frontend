@@ -3,8 +3,13 @@ try {
 } catch {}
 const path = require('path');
 
-const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const envKeys = Object.keys(process.env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(process.env[next]);
+  return prev;
+}, {});
 
 module.exports = {
   entry: './src/index.tsx',
@@ -42,7 +47,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new Dotenv(),
+    new webpack.DefinePlugin(envKeys),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src/public/index.html'),
     }),
