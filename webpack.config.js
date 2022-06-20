@@ -1,14 +1,20 @@
 try {
   require('dotenv').config();
-} catch {}
+} catch {
+}
 const path = require('path');
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const envKeys = Object.keys(process.env).reduce((prev, next) => {
-  prev[`process.env.${next}`] = JSON.stringify(process.env[next]);
-  return prev;
+const allowedEnvKeys = new Set(['BACKEND_HOST']);
+
+const envKeys = Object.keys(process.env).reduce((keys, next) => {
+  if (allowedEnvKeys.has(next)) {
+    keys[`process.env.${next}`] = JSON.stringify(process.env[next]);
+  }
+
+  return keys;
 }, {});
 
 module.exports = {
