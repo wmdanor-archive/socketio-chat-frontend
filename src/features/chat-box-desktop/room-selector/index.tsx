@@ -1,7 +1,7 @@
 import React from 'react';
 import * as styles from './styles.module.css';
 
-const Component = () => {
+const RoomSelector = () => {
   return (
     <div>
             
@@ -9,4 +9,4 @@ const Component = () => {
   );
 };
 
-export default Component;
+export default RoomSelector;

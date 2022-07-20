@@ -1,0 +1,80 @@
+.sign-in-container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 50vh;
+  transform: translateY(-50%);
+}
+
+.sign-in-top {
+  background: #9B9B9B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 36px;
+}
+
+.sign-in-title {
+  font-size: 36px;
+  color: #FFFFFF;
+}
+
+.sign-in-bottom {
+  background: #D9D9D9;
+  padding: 40px;
+}
+
+.sign-in-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 16px;
+  /*justify-content: center;*/
+}
+
+.sign-in-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sign-in-form-group-label {}
+
+.sign-in-form-group-input {
+  background: #FFFFFF;
+  border: 1px solid transparent;
+  transition: all 0.5s;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.sign-in-form-group-input:focus {
+  border: 1px solid #000000;
+}
+
+.sign-in-form-button {
+  border-radius: 8px;
+  background: #59AFFF;
+  transition: all 0.5s;
+  padding: 0.5rem;
+}
+
+.sign-in-form-button:hover {
+  background: #9B9B9B;
+}
+
+@media (min-width: 768px) {
+  .sign-in-container {
+    width: 600px;
+    margin-top: 100px;
+    transform: none;
+  }
+
+  .sign-in-top {
+    border-radius: 20px 20px 0 0;
+  }
+
+  .sign-in-bottom {
+    border-radius: 0 0 20px 20px;
+  }
+}

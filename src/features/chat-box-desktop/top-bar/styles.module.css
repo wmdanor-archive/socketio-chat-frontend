@@ -1,0 +1,28 @@
+.top-bar {
+  background: #9B9B9B;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  height: 80px;
+}
+
+.top-bar-left {}
+
+.top-bar-right {}
+
+.top-bar-button {
+  border-radius: 8px;
+  background: #59AFFF;
+  transition: all 0.5s;
+  padding: 12px 20px;
+}
+
+.top-bar-button:hover {
+  background: #FFFFFF;
+}
+
+.top-bar-title {
+  font-size: 32px;
+  color: #FFFFFF;
+}

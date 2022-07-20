@@ -1,9 +1,9 @@
 import React from 'react';
-import * as SCT from '../../services/socket-io/types/server-to-client';
-import styles from './styles.css';
+import { MessageDataSC } from '../../services/socket-io/types';
+import styles from './styles.module.css';
 
 interface MessageProps {
-  message: SCT.MessageData;
+  message: MessageDataSC;
   isAuthor: boolean;
 }
 
@@ -12,7 +12,7 @@ const Message: React.FC<MessageProps> = ({ message, isAuthor }) => {
 
   return (
     <div>
-      <span className={nicknameClass}>{message.nickname}</span>
+      <span className={nicknameClass}>{message.username}</span>
       <span> : </span>
       <span>{message.message}</span>
     </div>

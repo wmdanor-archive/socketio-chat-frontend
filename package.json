@@ -7,7 +7,8 @@
     "build": "webpack --mode production",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}'"
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}'",
+    "preinstall": "npx only-allow pnpm"
   },
   "devDependencies": {
     "@types/react": "^18.0.10",
@@ -35,9 +36,12 @@
     "webpack-dev-server": "^4.9.1"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.3",
     "modern-normalize": "^1.1.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-redux": "^8.0.2",
+    "react-responsive": "9.0.0-beta.10",
     "socket.io-client": "^4.5.1"
   }
 }

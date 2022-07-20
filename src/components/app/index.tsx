@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler, useState } from 'react';
 import { ClientToServerEventsEnum, getSocket, ServerToClientEventsEnum } from '../../services/socket-io';
-import * as SCT from '../../services/socket-io/types/server-to-client';
+import { MessageDataSC } from '../../services/socket-io/types';
 import Message from '../message';
 
 const App = () => {
@@ -12,22 +12,24 @@ const App = () => {
 
     const reply = prompt('Enter your nickname') ?? Math.random().toString();
 
-    setNickname(reply);
+    setUsername(reply);
 
-    socket.emit(ClientToServerEventsEnum.NewConnection, { nickname: reply }).emit(ClientToServerEventsEnum.JoinRoom, {});
+    socket
+      .emit(ClientToServerEventsEnum.NewConnection, { username: reply })
+      .emit(ClientToServerEventsEnum.JoinRoom, { name: 'global '});
   });
 
   socket.on('disconnect', () => {
     console.log('disconnected', socket.id);
   });
 
-  socket.on(ServerToClientEventsEnum.Message, (data: SCT.MessageData) => {
+  socket.on(ServerToClientEventsEnum.Message, (data: MessageDataSC) => {
     setMessages([...messages, data]);
   });
 
-  const [nickname, setNickname] = useState('');
+  const [username, setUsername] = useState('');
   const [isConnected, setConnected] = useState(false);
-  const [messages, setMessages] = useState<SCT.MessageData[]>([]);
+  const [messages, setMessages] = useState<MessageDataSC[]>([]);
   const [text, setText] = useState('');
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -38,8 +40,8 @@ const App = () => {
     console.log('Sending message', text);
 
     setMessages([...messages, {
+      username,
       message: text,
-      nickname,
     }]);
 
     socket.emit(ClientToServerEventsEnum.Message, {
@@ -48,16 +50,16 @@ const App = () => {
   };
 
   return (
-    isConnected ? (<div className="container">
+    isConnected ? (<div className="sign-in-container">
       <input type="text" onChange={handleChange}/>
       <button type="button" onClick={handleClick}>Send</button>
       <div>
         Messages:
         {messages.map((message, index) => (
-          <Message key={index} message={message} isAuthor={message.nickname === nickname} />
+          <Message key={index} message={message} isAuthor={message.username === username} />
         ))}
       </div>
-    </div>) : (<div className="container">Connecting to the server...</div>)
+    </div>) : (<div className="sign-in-container">Connecting to the server...</div>)
   );
 };
 
