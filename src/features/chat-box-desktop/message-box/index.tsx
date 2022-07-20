@@ -55,13 +55,6 @@ const MessageBox = () => {
       message,
     }));
 
-    for (let i = 0; i < 25; i++) {
-      dispatch(appendMessage({
-        username,
-        message,
-      }));
-    }
-
     socket.emit(ClientToServerEventsEnum.Message, { message });
   };
   
