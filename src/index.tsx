@@ -11,7 +11,7 @@ import SignIn from './components/sign-in';
 import { store } from './store';
 
 const container = document.getElementById('root');
-const root = createRoot(container);
+const root = createRoot(container as HTMLElement);
 
 Object.defineProperty(window, 'reduxState', {
   get() {

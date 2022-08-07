@@ -1,2 +1,2 @@
 webpack.config.js
-server.js
+src/server.mjs

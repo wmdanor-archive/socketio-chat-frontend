@@ -1,9 +1,10 @@
-try {
-  require('dotenv').config();
-} catch {}
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
+import 'dotenv/config';
+import * as fs from 'fs';
+import * as http from 'http';
+import * as path from 'path';
+import * as url from 'url';
+
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 const port = process.env.PORT ?? 3000;
 
