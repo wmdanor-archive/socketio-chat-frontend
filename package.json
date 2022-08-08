@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "node src/server.mjs",
+    "start": "node src/server.cjs",
     "dev": "vite serve --port 3000",
     "build": "tsc && vite build --emptyOutDir",
     "preview": "vite preview --port 3000",

@@ -1,2 +1,2 @@
 webpack.config.js
-src/server.mjs
+src/server.cjs
