@@ -16,7 +16,7 @@ export const userSlice = createSlice({
   name: Slices.User,
   initialState,
   reducers: {
-    setName: (state, action: PayloadAction<string | undefined>) => {
+    setName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
     },
   }

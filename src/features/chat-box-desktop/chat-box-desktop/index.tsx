@@ -8,7 +8,7 @@ import {
 import { useAppDispatch, useAppSelector } from '../../../store';
 import * as roomState from '../../../store/slices/room.slice';
 import * as userState from '../../../store/slices/user.slice';
-import * as meesagesState from '../../../store/slices/messages.slice';
+import * as messagesState from '../../../store/slices/messages.slice';
 import Body from '../body';
 import TopBar from '../top-bar';
 import * as styles from './styles.module.css';
@@ -51,7 +51,7 @@ const ChatBoxDesktop = () => {
 
   socket.on(ServerToClientEventsEnum.Message, (data) => {
     console.log('message', data);
-    dispatch(meesagesState.appendMessage(data));
+    dispatch(messagesState.appendMessage(data));
   });
 
   return (
