@@ -5,8 +5,9 @@
   "scripts": {
     "start": "node src/server.mjs",
     "dev": "vite serve --port 3000",
-    "build": "vite build --emptyOutDir",
+    "build": "tsc --noEmit && vite build --emptyOutDir",
     "preview": "vite preview --port 3000",
+    "typecheck": "tsc --noEmit",
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}'",
@@ -20,7 +21,8 @@
     "react-dom": "^18.1.0",
     "react-redux": "^8.0.2",
     "react-responsive": "9.0.0-beta.10",
-    "socket.io-client": "^4.5.1"
+    "socket.io-client": "^4.5.1",
+    "vite-plugin-checker": "^0.4.9"
   },
   "devDependencies": {
     "@types/react": "^18.0.10",
